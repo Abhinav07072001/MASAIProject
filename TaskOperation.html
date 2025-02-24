@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Operation</title>
+</head>
+<body>
+    
+    <script>
+        let task=["coding","bathing", "studying","gym", "playing"]
+
+        function taskempty(){
+            return task[0]=" "
+    }
+
+        let empty=taskempty()
+
+
+        function addtwoElements(array,val1 ){
+            array.unshift(val1)
+            return array
+    }
+
+        addtwoElements(task, "swimming")
+        addtwoElements(task,"bowling")
+
+        function replace(val2){
+            let n=task.length -1
+            task[n]=""
+            task[n]=val2
+    }
+
+        replace("cleaning")
+
+        console.log(task)
+
+        </script>
+</body>
+</html>
