@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function studentManagement(score)
+        {
+            let count=0;
+            for(let i=0; i<score.length; i++)
+            {
+                if(score[i] < 40)
+                {
+                    score[i]+= 20
+                }
+    
+                if(score[i] > 90)
+                {
+                    score[i]-= 20
+                }
+            }
+  
+            for(let j=0; j<score.length; j++)
+            {
+                if(score[j] > 50)
+                {
+                    count++;
+                }
+            }
+            console.log(" Total passing student is", count)
+  
+            return score;
+        }
+  
+  let stdscore=[22, 33, 56, 78, 92, 45, 77, 87, 88, 90];
+  
+  let answer= studentManagement(stdscore);
+  
+  console.log(answer);
+
+    </script>
+</body>
+</html>
