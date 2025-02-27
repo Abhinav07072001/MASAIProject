@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>print 2d trasversal array</h1>
+    <script>
+        function Traversal2darray(arr){
+  let output=""
+  for(let i=arr.length-1; i>=0; i--){
+    output+=arr[i][0] + " ";
+  }
+  for(let j=1; j<arr.length; j++){
+    output+= arr[0][j] + " ";  
+    
+  }
+  for(let i=1; i<arr.length; i++){
+    output+= arr[i][2] + " ";  
+    
+  }
+  for(let j=arr.length-2; j>0; j--){
+    output+= arr[2][j] + " ";
+  }
+  
+  
+  console.log(output)
+  
+  return output
+}
+
+
+let matrix=[[1,2,3],
+           [4,5,6],
+           [7,8,9]
+           ]
+Traversal2darray(matrix);           
+    </script>
+</body>
+</html>
