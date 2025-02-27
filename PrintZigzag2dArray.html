@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1>Print zig zag 2d array</h1>
+
+    <script>
+        function print(arr){
+  let output=""
+  
+  for(let j=arr[0].length-1 ; j>=0; j--){
+    output+=arr[0][j] + " ";
+  }
+   for(let j=0 ; j<arr[1].length; j++){
+    output+=arr[1][j] + " ";
+  }
+   for(let j=arr[2].length-1 ; j>=0; j--){
+    output+=arr[2][j] + " ";
+  }
+  for(let j=0 ; j<arr[3].length; j++){
+    output+=arr[3][j] + " ";
+  }
+  console.log(output);
+  
+  return output
+}
+
+let matrix=[[1,2,3,4,5],
+            [6,7,8,9],
+            [3,2,5,4,6],
+            [7,8,9,1,2]
+            ]
+            
+print(matrix)
+    </script>
+</body>
+</html>
