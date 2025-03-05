@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Student Grade Score</h1>
+    <script>
+        function grade(score){
+  let result={}
+  let output=""
+  for(let stdName in score){
+    if(score[stdName]>=90){
+      output+= stdName+ '-'+ 'A'+" ";
+      output+='\n';
+    }
+    else if(score[stdName] >=80 && score[stdName]<90){
+      output+= stdName+ '-'+ 'B'+" ";
+      output+='\n';
+    }
+    else if(score[stdName] >=70 && score[stdName]<80){
+      output+= stdName+ '-'+ 'C'+" ";
+      output+='\n';
+    }
+    else if(score[stdName] >=60 && score[stdName]<70){
+      output+= stdName+ '-'+ 'D'+" ";
+      output+='\n'
+    }
+    else{
+      output+= stdName+ '-'+ 'F'+" ";
+      output+='\n';
+    }
+  }
+  return output;
+}
+
+
+let Scores = {
+  John: 85,
+  Emma: 92,
+  Sam: 67,
+  Bob: 45
+};
+
+console.log(grade(Scores));
+
+
+    </script>
+</body>
+</html>
