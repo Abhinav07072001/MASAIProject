@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Access Granted Ternary operator</h1>
+
+    <script>
+        function Identify(user){
+   
+   return (user["role"]=="admin" && user["status"]==true)? "Admin Access Granted"
+   : (user["role"]=="admin" && user["status"]==false)? "Admin Access Revoked"
+   :(user["role"]=="user" && user["status"]==true)? "User Access Granted"
+   :(user["role"]=="user" && user["status"]==false)? "User Access Revoked" : "Access Denied"
+     
+   
+ }
+ 
+ let user={name:"Alice", role:"admin", status:false};
+ 
+ let user2={name:"Bob",role:"user",status:true};
+ 
+ console.log(Identify(user));
+ 
+ console.log(Identify(user2));
+
+    </script>
+</body>
+</html>
