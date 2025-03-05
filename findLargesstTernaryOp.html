@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Find largest by ternary operator</h1>
+
+    <script>
+
+function largesst(num1, num2, num3){
+  return num1>num2 ? (num1>num3? num1 : num3) : (num2>num3? num2 : num3); 
+}
+
+let ans=largesst(58,48,37);
+console.log(ans);
+    </script>
+</body>
+</html>
