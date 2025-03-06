@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Access Granted system Ternary operator</h1>
+
+    <script>
+        function Print(person)
+{
+  let grant="";
+   (person["role"]=="admin") ? (person["active"]==true && person["experience"]>5 && 
+  person["department"]=="IT")? grant="Full IT Admin Access" : (person["active"]==true && 
+  person["experience"]>5 &&person["department"]!="IT")? grant="Full General Admin Access":
+  (person["active"]==true && person["experience"]<=5)? grant="Limited Admin Access" :
+  grant="Admin Access Revoked"  
+  : (person["role"]=="manager")? (person["active"]==true && 
+  person["experience"]>3 && person["department"]=="Sales")? 
+  grant="Full Sales Manager Access":(person["active"]==true && 
+  person["experience"]>3 && person["department"]!="Sales")?grant="Full Manager Access":
+  (person["active"]==true && person["experience"]<=3) ? 
+  grant="Limited Manager Access" :grant="Manager Access Revoked"
+  : (person["role"]=="user") ?(person["active"]==true && person["department"]=="Support")? 
+  grant="Priority Support Access" : (person["active"]==true && 
+  person["department"]!="Support")? grant="User Access":grant="User Access Revoked"
+  : grant="Invalid Role" 
+
+  return grant
+}  
+
+
+ let person = { role: "admin", experience: 7, active: true, department: "IT" };
+ 
+ let person1 = { role: "manager", experience: 4, active: true, department: "Marketing" };
+ 
+ let person2 = { role: "user", experience: 2, active: true, department: "Support" };
+ 
+ let person3 = { role: "admin", experience: 3, active: false, department: "Finance" };
+
+console.log(Print(person));
+console.log(Print(person1));
+console.log(Print(person2));
+console.log(Print(person3));
+
+    </script>    
+</body>
+</html>
