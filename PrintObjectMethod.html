@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Print object key and value</h1>
+
+    <script>
+        function printObject(book){
+  let res=""
+  for(let key in book){
+    res+=` ${key} : ${book[key]}`;
+  }
+  return res;
+}
+
+let book = { title: "The Hobbit", author: "J.R.R. Tolkien", year: 1937 };
+
+let ans= printObject(book);
+
+console.log(ans);
+
+    </script>
+</body>
+</html>
