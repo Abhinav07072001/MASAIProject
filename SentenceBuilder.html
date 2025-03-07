@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Sentence Builder</h1>
+    <script>
+        let sentenceBuilder = {
+
+subject: "I",
+
+verb: "am",
+
+object: "coding",
+
+buildSentence: function(){
+  (this.subject==""  || this.verb=="" || this.object=="")? console.log("Incomplete property"):
+  console.log(this.subject+" "+this.verb+" "+this.object);
+  
+},
+ updateProperty: function(property,value){
+  if(!sentenceBuilder.hasOwnProperty(property)){
+    console.log("Invalid Property");
+    
+  
+  }
+  else if(value==""){
+    console.log("Incomplete Sentence");
+  }
+  else{
+    this[property]=value;
+    console.log(this.subject+" "+this.verb+" "+this.object);
+  }
+   
+}
+
+}
+
+sentenceBuilder.buildSentence();
+sentenceBuilder.updateProperty('mood','love')
+    </script>
+</body>
+</html>
