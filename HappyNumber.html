@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Happy Number</h1>
+    <script>
+        function happyNumber(n){
+  let seen=new Set();
+  let sum=0;
+  
+  while(!seen.has(n) && n!==1 ){
+    let num=n;
+    seen.add(n);
+    
+    while(num>0){
+      let lastD=num%10;
+      sum+= (lastD *lastD);
+      num=Math.floor(num/10);
+    }
+    n=sum;
+    sum=0;
+    
+  }
+  
+  if(n==1){
+    console.log("Happy Number");
+  }
+  else{
+    console.log("Not a happy Number");
+  }
+}
+
+let n=19;
+happyNumber(n);
+    </script>
+</body>
+</html>
