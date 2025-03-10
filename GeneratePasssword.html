@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Generate password</h1>
+
+    <script>
+        function RandomNum(charset){
+  let index=Math.floor(Math.random() * charset.length)
+  return(charset[index]);
+}
+//let charset=[10,20,34,55,66]
+//console.log(RandomNum(charset))
+
+function GeneratePasssword(len, includeSpecialChar=false, includeNum=true){
+  let uppercase="ABCDEFGHIJKLMNOPQURSTVWXYZ";
+  let lowercase="abcdefghijklmnopqursstvwxyz";
+  let char="!@#$%^&*";
+  let num="1234567890";
+  
+  let output=""
+  output+= RandomNum(uppercase);
+  
+  if(includeSpecialChar){
+    output+=RandomNum(char)+ "";
+  }
+  
+ if(includeNum){
+    output+=RandomNum(num) + "";
+  }
+  let n=len - output.length;
+
+  for(let i=0; i<n; i++){
+    output+=RandomNum(lowercase);
+  }
+  
+  return output
+}
+
+console.log(GeneratePasssword(10,true,true));
+
+
+
+    </script>
+</body>
+</html>
