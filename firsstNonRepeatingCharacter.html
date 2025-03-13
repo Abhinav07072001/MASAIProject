@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>First non repeating character </h1>
+    <script>
+        function firstUniqueChar(str){
+  let output="";
+  let obj={}
+  let count=0;
+  
+  for(let i=0; i<str.length; i++){
+    obj[str[i]]=(obj[str[i]] ||0 )+1;
+  }
+  //console.log(obj)
+  
+  for(let key in obj){
+    if(obj[key]==1){
+      count++
+      output+=key;
+    }
+  }
+  if(count>0){
+    return output;  
+  }
+  else return null;
+  
+} 
+
+let str="aabbccdeeff"
+let ans=firstUniqueChar(str);
+console.log(ans)
+
+let ans1=firstUniqueChar("xxyyzzaabb");
+console.log(ans1)
+    </script>
+</body>
+</html>
