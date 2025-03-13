@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1> find a unique number which is either even or odd</h1>
+    <script>
+        function findOutlier(arr){
+  let EvenC=0;
+  let OddC=0;
+  let EvenOutput=""
+  let OddOutput=""
+  for(let i=0; i<arr.length; i++){
+    if(arr[i]%2==0){
+      EvenOutput+=arr[i]
+      EvenC++;
+    }
+    else{
+      OddOutput+=arr[i];
+      OddC++;
+    }
+  }
+  if(EvenC==1){
+    return EvenOutput;
+  }
+  else{
+    return OddOutput;
+  }
+}
+
+let arr=[1,3,5,7,8];
+
+let ans=findOutlier(arr)
+console.log(ans)
+    </script>
+</body>
+</html>
