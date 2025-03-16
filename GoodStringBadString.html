@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>remove consecutive character from a string ans modified the string </h1>
+    <script>
+        function goodBadString(str){
+  let str1=""
+  let seen=new Set()
+  for(let i=0; i<str.length; i++){
+    if(!seen.has(str[i])){
+      str1+=str[i]
+      seen.add(str[i])
+    }
+    else if(str[i]==str[i-1]){
+      continue
+    }
+    else{
+      str1+=str[i]
+    }
+  }
+  console.log(str1)
+  //Write your code here
+}
+    </script>
+</body>
+</html>
