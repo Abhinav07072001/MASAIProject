@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>three min and three max distinct elements</h1>
+    <script>
+        function threeMINMax(N,arr){
+  let Uniquearr=[]
+  let seen= new Set()
+  for(let ele of arr){
+    seen.add(ele)
+  }
+  Uniquearr= [... seen]// spread operator(...) to convert set to array
+  Uniquearr=Uniquearr.sort((a,b)=>a-b)
+  // console.log(Uniquearr)
+  let threemin= Uniquearr.slice(0,3)
+  let threemax= Uniquearr.slice(-3)
+  
+  // console.log(threemin)
+  // console.log(threemax)
+  
+let output=""
+let max=""
+for(let i=0; i<threemin.length; i++){
+  output+=threemin[i]
+}
+// output+='\n'
+for(let i=0;i<threemax.length; i++){
+  max+=threemax[i]
+}
+if(threemin.length<3){
+  console.log("Not Possible")
+}
+else{
+  console.log(output)
+}
+if(threemax.length){
+  console.log("Not Possible")
+}
+else console.log(max)
+}
+
+let arr=[1,2,6,5,3,1,2,5]
+threeMINMax(8,arr)
+    </script>
+</body>
+</html>
