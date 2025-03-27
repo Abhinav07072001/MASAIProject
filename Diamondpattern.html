@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>diamond pattern</h1>
+    <script>
+        function dimaondPattern(n){
+  let temp=""
+  let mid= Math.floor(n/2)
+  //upper part
+  for(let i=0; i<=mid-1s; i++){
+    temp+= " ".repeat(mid - i)+"*".repeat(2* i+ 1)
+    temp+='\n'
+    //console.log(temp)
+  }
+  
+  //middle part
+  for(let i=1; i<=n; i++){
+    temp+="*"
+  }
+  temp+='\n'
+  
+
+//lower part
+  for(let i=mid-1; i>=0; i--){
+    temp+= " ".repeat(mid - i)+"*".repeat(2* i+ 1)
+    temp+='\n'
+    //console.log(temp)
+  }
+  console.log(temp)
+}
+
+dimaondPattern(5)
+    </script>
+</body>
+</html>
