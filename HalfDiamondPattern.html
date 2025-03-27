@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>half diamond pattern</h1>
+    <script>
+        function halfDiamond(n){
+  for(let i=1; i<=n; i++){
+    let temp=""
+    temp+="*".repeat(i)
+    console.log(temp)
+  }
+  
+  for(let i=n-1; i>=1; i--){
+    let temp=""
+    temp+="*".repeat(i)
+    console.log(temp)
+  }
+}
+
+halfDiamond(5)
+    </script>
+</body>
+</html>
