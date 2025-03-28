@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>anagram evaluation question</h1>
+    <script>
+        function anagram(arr){
+  let obj={}
+  let count=0
+  arr.forEach(word=>{
+    let sortword= word.split('').sort().join('');
+    
+    if(!obj[sortword]){
+      obj[sortword]=word
+      count++
+    }
+  });
+  console.log(count)
+  return Object.values(obj).sort();
+}
+
+let arr=["eodc",
+"odec",
+"code",
+"baca",
+"aabc"]
+let ans=anagram(arr)
+console.log
+    </script>
+</body>
+</html>
