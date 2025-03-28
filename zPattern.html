@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Zpattern </h1>
+    <script>
+        function IPattern(n){
+  let temp=""
+  for(let i=1; i<=n; i++){
+    temp+="* "
+  }
+  temp+='\n'
+  
+  //middlepart
+  for(let i=1; i<=n-2; i++){
+    for(let j=n-2; j>=1; j--){
+      temp+=" "
+    }
+    temp+="*"
+    temp+='\n'
+    
+  }
+  // temp+='\n'
+  // console.log(temp)
+  //lowerpart
+  for(let i=1; i<=n; i++){
+    temp+="* "
+  }
+  console.log(temp)
+} 
+
+IPattern(6)
+    </script>
+</body>
+</html>
