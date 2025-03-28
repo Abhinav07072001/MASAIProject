@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Decompress The string</h1>
+    <script>
+        function decompress(arr){
+  let str= arr.split('')
+  let temp=""
+  
+  for(let i=0; i<str.length; i+=2){
+    for(let j=0; j<str[i+1]; j++){
+      temp+=str[i]
+    }
+  }
+  console.log(temp)
+}
+
+let arr="a3b2"
+decompress(arr)
+    </script>
+</body>
+</html>
