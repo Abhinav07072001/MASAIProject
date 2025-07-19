@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive List</title>
+    <style>
+        /* 1️⃣ First list item in bold */
+        ol li:first-child {
+            font-weight: bold;
+        }
+
+        /* 2️⃣ Adjacent sibling - 2nd item after the 1st */
+        ol li:first-child + li {
+            background-color: lightgray;
+        }
+
+        /* 3️⃣ General sibling - all items after 3rd item in italics */
+        ol li:nth-child(3) ~ li {
+            font-style: italic;
+        }
+
+        /* 4️⃣ Hover effect for all list items */
+        ol li:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <ol>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+        <li>Fourth item</li>
+        <li>Fifth item</li>
+    </ol>
+
+</body>
+</html>
