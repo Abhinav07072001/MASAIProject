@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Specificity</title>
+    <style>
+        /* Element selector - least specificity */
+        div {
+            color: green;
+        }
+
+        /* Class selector - medium specificity */
+        .highlight {
+            color: blue;
+        }
+
+        /* ID selector - highest specificity */
+        #special {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="highlight" id="special">
+        This text demonstrates CSS specificity.
+    </div>
+
+</body>
+</html>
