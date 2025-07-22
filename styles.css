@@ -1,0 +1,33 @@
+body {
+    background-color: #50b6d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-gap: 10px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.key {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 5px;
+}
+
+.space {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 5px;
+    grid-column: span 5;
+}
