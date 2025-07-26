@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic List</title>
+</head>
+<body>
+  <ul id="item-list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+
+  <button id="add-button">Add Item</button>
+
+  <script>
+    const ul = document.querySelector('#item-list');
+    const button = document.querySelector('#add-button');
+
+    button.addEventListener('click', function () {
+      const newItem = document.createElement('li');
+      newItem.textContent = 'New Item';
+
+      // Count will be length + 1 (since it's about to be added)
+      const count = ul.children.length + 1;
+
+      if (count % 2 !== 0) {
+        // Odd: Bold font + Blue color
+        newItem.style.fontWeight = 'bold';
+        newItem.style.color = 'blue';
+      } else {
+        // Even: Italic font + Red color
+        newItem.style.fontStyle = 'italic';
+        newItem.style.color = 'red';
+      }
+
+      ul.appendChild(newItem);
+    });
+  </script>
+</body>
+</html>
