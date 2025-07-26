@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Manipulation Task</title>
+</head>
+<body>
+  <!-- H1 with ID -->
+  <h1 id="main-heading">Original Heading</h1>
+
+  <!-- Paragraphs -->
+  <p>This is the first paragraph.</p>
+  <p>This is the second paragraph.</p>
+  <p>This is the third paragraph.</p>
+
+  <!-- Div with class container -->
+  <div class="container">This is a container div.</div>
+
+  <!-- JavaScript -->
+  <script>
+    // 1. Select <h1> by ID and change text
+    const heading = document.getElementById('main-heading');
+    heading.textContent = 'Welcome to the DOM World!';
+
+    // 2. Select all <p> elements and change text color to blue
+    const paragraphs = document.getElementsByTagName('p');
+    for (let i = 0; i < paragraphs.length; i++) {
+      paragraphs[i].style.color = 'blue';
+    }
+
+    // 3. Select first <div> with class "container" and change background color to yellow
+    const containerDiv = document.querySelector('.container');
+    containerDiv.style.backgroundColor = 'yellow';
+  </script>
+</body>
+</html>
