@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Propagation</title>
+  <style>
+    .box {
+      padding: 30px;
+      border: 2px solid black;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="outer" class="box">
+    Outer Div
+    <div id="middle" class="box">
+      Middle Div
+      <div id="inner" class="box">
+        Inner Div
+        <button id="innerBtn">Click Me (Inner Button)</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const outer = document.getElementById('outer');
+    const middle = document.getElementById('middle');
+    const inner = document.getElementById('inner');
+    const innerBtn = document.getElementById('innerBtn');
+
+    // 🔁 Event listeners in both capturing and bubbling phases
+    [outer, middle, inner].forEach(div => {
+      // Capturing Phase (true)
+      div.addEventListener('click', (e) => {
+        alert(`${div.id} div clicked (Capturing Phase)`);
+      }, true);
+
+      // Bubbling Phase (false)
+      div.addEventListener('click', (e) => {
+        alert(`${div.id} div clicked (Bubbling Phase)`);
+      });
+    });
+
+    // ✅ Button click with stopPropagation
+    innerBtn.addEventListener('click', (e) => {
+      alert('Inner Button Clicked');
+      e.stopPropagation(); // ✅ Prevents event from bubbling or capturing further
+    });
+  </script>
+
+</body>
+</html>
