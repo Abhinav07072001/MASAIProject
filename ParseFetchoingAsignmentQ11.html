@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+    }
+    button {
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>My Notes</h2>
+  <textarea id="noteArea" placeholder="Write your notes here..."></textarea><br>
+  <button onclick="saveNotes()">Save Notes</button>
+  <button onclick="loadNotes()">Load Notes</button>
+  <button onclick="clearNotes()">Clear Notes</button>
+
+  <script>
+    const noteArea = document.getElementById("noteArea");
+
+    // ✅ Load notes automatically on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedNote = localStorage.getItem("notes");
+      if (savedNote) {
+        noteArea.value = savedNote;
+      }
+    });
+
+    // ✅ Save notes
+    function saveNotes() {
+      const note = noteArea.value.trim();
+      if (note === "") {
+        alert("Note is empty! Please write something before saving.");
+        return;
+      }
+      localStorage.setItem("notes", note);
+      alert("Notes saved successfully!");
+    }
+
+    // ✅ Load notes manually (if user clicks Load)
+    function loadNotes() {
+      const note = localStorage.getItem("notes");
+      if (note) {
+        noteArea.value = note;
+      } else {
+        alert("No saved notes found.");
+      }
+    }
+
+    // ✅ Clear notes
+    function clearNotes() {
+      localStorage.removeItem("notes");
+      noteArea.value = "";
+      alert("Notes cleared.");
+    }
+  </script>
+</body>
+</html>
