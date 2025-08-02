@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Hub</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Idea Hub</h1>
+
+        <form id="ideaform">
+            <input type="text" id="title" placeholder="Idea title" required/>
+            <textarea  id="description" placeholder="your idea" required></textarea>
+            <button type="submit" >Post Idea</button>
+        </form>
+
+        <input type="text" id="searchInput" placeholder="Search ideas"/>
+
+        <div id="idealist"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
