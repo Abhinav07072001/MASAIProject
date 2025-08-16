@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase1</title>
+</head>
+<body>
+    
+</body>
+<script>
+//     fetch("https://moviedatabase-bec03-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json")
+//     .then((res)=>res.json())
+//     .then((data)=>console.log("This is Firebase API",data));
+
+//     fetch('https://fakestoreapi.com/products')
+//   .then(response => response.json())
+//   .then(data => console.log("This is a Fake Store API", data));
+
+async function fetchMovies(){
+    let res=await fetch("https://moviedatabase-bec03-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json");
+    let movie= await res.json();
+
+    let movieArr=Object.entries(movie);
+    // console.log(movieArr);
+
+    let finaldata=movieArr.map(([id,movie])=> ({id,...movie}));
+    console.log(finaldata);
+}
+
+fetchMovies();
+</script>
+</html>

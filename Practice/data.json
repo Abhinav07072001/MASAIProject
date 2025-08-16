@@ -1,0 +1,37 @@
+{
+    "movies" :
+    {
+        "m1":
+        {
+            "title": "Inception",
+            "year": 2010,
+            "genre": "Sci-fi",
+            "image":"https://posterspy.com/wp-content/uploads/2020/11/92756ED7-ABFF-4D1C-A627-05C517B343C8-1500x2250.jpeg"
+        },
+        "m2":
+        {
+            "title": "Avengers",
+            "year": 2012,
+            "genre": "Sci-fi",
+            "image":"https://files.ekmcdn.com/allwallpapers/images/mural-wallpaper-avengers-movie-poster-37221-1-p.jpg"
+        }
+    }
+}
+
+[
+    {
+        "id":"m1",
+        "title": "Inception",
+        "year": 2010,
+        "genre": "Sci-fi",
+        "image":"https://posterspy.com/wp-content/uploads/2020/11/92756ED7-ABFF-4D1C-A627-05C517B343C8-1500x2250.jpeg"
+        
+    },
+    {
+        "id":"m2",
+        "title":"Avengers",
+        "year": 2012,
+        "genre": "Sci-fi",
+        "image":"https://files.ekmcdn.com/allwallpapers/images/mural-wallpaper-avengers-movie-poster-37221-1-p.jpg"
+    }
+]

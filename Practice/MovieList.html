@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase integration 1</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4ff;
+        }
+        input,button{
+            margin: 3px;
+            padding: 5px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #Movie-List{
+            display: grid;
+            grid-template-columns: repeat(3,200px);
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .movie-card{
+            background-color: white;
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .movie-card img{
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Firebase Integration with Movies</h2>
+    <input type="text" placeholder="Movie title" id="title">
+    <input type="number" placeholder="Year" id="year">
+    <input type="text" placeholder="genre" id="Genre">
+    <input type="text" placeholder="Image URL" id="image">
+
+    <button onclick="addMovies()">Add Movie</button>
+
+    <h3>filtering & Sorting Movie</h3>
+    <!-- filtering -->
+    <input type="number"  id="filterYear" placeholder="fillter">
+    <select  id="filterGenre">
+        <option value="">All</option>
+        <option value="SCIFI">SCI-FI</option>
+        <option value="Action">Action</option>
+        <option value="Horror">Horror</option>
+    </select>
+    <button onclick="">Apply Filter</button>
+
+    <!-- Sorting -->
+     <select  id="sortBy">
+        <option value="year-asc">Year (Oldest First)</option>
+        <option value="year-desc">Year (Newest First)</option>
+     </select>
+     <button onclick="">Sort Movies</button>
+
+    <h3>Movie List</h3>
+    <div id="Movie-List"></div>
+</body>
+</html>
+<script>
+    // Edit Movie function 
+
+    let editMovieId=null;
+    async function editMovie(id) {
+        fetch(`https://moviedatabase-d7ad4-default-rtdb.asia-southeast1.firebasedatabase.app/movies/${id}.json`)
+        .then(res=>res.json())
+        .then(movie=>{
+            document.getElementById('title').value=movie.title;
+            document.getElementById('year').value=movie.year;
+            document.getElementById('Genre').value = movie.genre;
+            document.getElementById('image').value = movie.image;
+
+            editMovieId=id;   // Stroing curent id for updating 
+        });
+    }
+    //  Add/update Movie fuinction
+    async function addMovies() {
+        let movie={
+            title: document.getElementById('title').value,
+            year: document.getElementById('year').value,
+            genre:document.getElementById('Genre').value,
+            image: document.getElementById('image').value
+        }
+        
+        if(editMovieId){
+            // Update Existing Moivie
+            await fetch(`https://moviedatabase-d7ad4-default-rtdb.asia-southeast1.firebasedatabase.app/movies/${editMovieId}.json`,{
+                method: "PATCH",
+                headers:{"Content-Type": 'application/json'},
+                body:JSON.stringify(movie)
+
+            });
+            editMovieId= null; // Reset after Update
+        }
+        else
+        {
+            // ADD new movie
+            let res=await fetch('https://moviedatabase-d7ad4-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json',{
+            method:'POST',
+            headers:{
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(movie)
+         });
+
+        }
+        
+        // Clear Inputs
+        document.getElementById('title').value='';
+        document.getElementById('year').value='';
+        document.getElementById('Genre').value='';
+        document.getElementById('image').value='';
+
+        fetchmovies();
+    }
+
+    async function fetchmovies() {
+        let res=await fetch('https://moviedatabase-d7ad4-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json');
+        let data= await res.json();
+
+        let movielist=document.getElementById('Movie-List');
+        movielist.innerHTML='';
+
+        let movieArray=Object.entries(data).map(([id, movie])=>({id, ...movie}));
+
+        movieArray.forEach((movie)=>{
+            let movieCard=document.createElement('div');
+            movieCard.className='movie-card';
+
+            movieCard.innerHTML=`
+            <img src="${movie.image}" alt="${movie.title}">
+            <h4>${movie.title}(${movie.year})</h4>
+            <p>${movie.genre}</p>
+            <button class="delete-btn" onclick="deletemovie('${movie.id}')">Delete</button>
+            <button class="edit-btn" onclick="editMovie('${movie.id}')">Edit</button>
+            `;
+
+            movielist.appendChild(movieCard);
+        })
+
+    }
+
+    async function deletemovie(movieID) {
+        let res=await fetch(`https://moviedatabase-d7ad4-default-rtdb.asia-southeast1.firebasedatabase.app/movies/${movieID}.json`,{
+            method:'DELETE'
+        });
+
+        fetchmovies()
+        
+    }
+
+    
+
+    fetchmovies();
+</script>

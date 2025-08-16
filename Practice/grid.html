@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div#box{
+            width: 90%;
+            height: 50vh;
+            display: grid;
+            background-color: yellow;
+            /* grid-template-columns: repeat(3,1fr); */
+            gap: 10px;
+            /* justify-content: center; */
+            /* text-align: center; */
+            grid-template-areas: "q1 q4 q2 q2 . q3"
+                                 "q1 q4 q5 q5 q5 q6";
+        }
+
+        div#box>div{
+            /* align-items: center; */
+            /* align-content: center; */
+           /* text-align: center; */
+
+            border: 2px solid;
+        }
+        div#box>div:nth-of-type(1){
+            grid-area: q1;
+            background-color: green;
+        }
+         div#box>div:nth-of-type(2){
+            grid-area: q2;
+            background-color: red;
+        }
+         div#box>div:nth-of-type(3){
+            grid-area: q3;
+            background-color: aqua;
+        }
+        div#box>div:nth-of-type(4){
+            grid-area: q4;
+            background-color: white;
+        }
+        div#box>div:nth-of-type(5){
+            grid-area: q5;
+            background-color: pink;
+        }
+        /* div#box>div:nth-of-type(6){
+            grid-area: q6;
+            background-color: orange; */
+        /* } */
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <!-- <div>6</div> -->
+        
+    </div>
+</body>
+</html>
