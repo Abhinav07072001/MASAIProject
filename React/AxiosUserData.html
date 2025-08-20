@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App(){
+            const [users, setUsers]=React.useState([]);
+            const [name, setName]=React.useState("");
+            const [email, setEmail]=React.useState("");
+
+            // Fetch user on mount
+            React.useEffect(()=>{
+                axios.get("https://jsonplaceholder.typicode.com/users")
+                .then(res=>setUsers(res.data))
+                .catch(err=>console.error("Error fetching Users",err));
+            },[]);
+
+            // Handle Form Submit(Post Request)
+            const handleSubmit= async(e)=>{
+                e.preventDefault();
+                try{
+                    const res=await axios.post("https://jsonplaceholder.typicode.com/users",{
+                        name,
+                        email
+                    });
+                    setUsers([...users, res.data]); // Add new users to state
+                    setName("");
+                    setEmail("");
+                } catch(error){
+                    console.error("Error creating users:", error);
+                }
+            };
+
+            return(
+                <div style={{textAlign:"center", marginTop:"30px"}}>
+                    <h2>Axios Get Post Example</h2> 
+                    
+                    <form onSubmit={handleSubmit} style={{marginBottom:"20px"}}>
+                        <input type="text"
+                            placeholder="Enter Name"
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            style={{padding:"8px", margin:"5px"}} />
+
+                        <input type="email"
+                            placeholder="Enter Email"
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
+                            style={{padding:"8px", margin:"5px"}} />
+                        
+                        <button type="submit" style={{padding:"8px 12px", cursor:"pointer"}}>
+                            Add User</button>    
+                            
+                    </form>
+
+                    <ul style={{listStyle:"none", padding:0}}>
+                        {users.map(user=>(
+                            <li key={user.id}style={{margin:"8px 0", border:"1px solid #ccc", padding:"10px", borderRadius:"5px"}}>
+                                <b>{user.name}</b> - {user.email}
+                            </li>
+                    ))}
+                        </ul>
+                </div>
+            );
+        }
+
+        const root=ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>

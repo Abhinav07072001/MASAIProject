@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Color</title>
+    <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel CDN -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App(){
+            const [color, setColor]=React.useState("green");
+
+            // Toggle between green or yellow
+            const toggleColor=()=>{
+                setColor(prev=>prev==="green"? "yellow": "green");
+            };
+
+            // Styling for button
+            const buttonStyle={
+                backgroundColor: color,
+                color: color === "green" ? "white" : "black", // text visible
+                padding: "10px 12px" ,
+                border:"2px solid red",
+                borderRadius:"20px",
+                cursor:"pointer",
+                fontSize:"16px"
+            };
+        return(
+            <React.Fragment>
+                <div style={{textAlign:"center" ,marginTop:"50px", backgroundColor:color,
+                height:"100vh"}}>
+                    <button style={buttonStyle} onClick={toggleColor}>
+                        Color: {color.charAt(0).toUpperCase() + color.slice(1)}
+                    </button>
+                    <p> Color: {color.charAt(0).toUpperCase() + color.slice(1)}</p>
+                </div>
+            </React.Fragment>
+        );
+        }
+
+        const root=ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>

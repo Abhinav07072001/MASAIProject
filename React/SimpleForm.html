@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple React Form</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function SimpleForm()
+        {
+            // state for form inputs
+            const [formData, setformData]=React.useState({
+                username:"",
+                email:""
+            });
+
+            // state for error message
+            const [error, setError]=React.useState("");
+
+            // handle input changes
+            const handleChange=(e)=>{
+                const {name, value} =e.target;
+                setformData((prev)=>({
+                    ...prev,
+                    [name]:value
+                }));
+            };
+
+            // handle submit changes
+            const handleSubmit=(e)=>{
+                e.preventDefault();
+
+                if(!formData.username.trim()){
+                    setError("Username is required");
+                }else if(!formData.email.includes('@')){
+                    setError("Valid Email Required");
+                }else{
+                    console.log("Form Submitted", formData);
+                    alert("Form Submitted"+JSON.stringify(formData));
+                    setError("");
+                }
+            };
+            return(
+                <form onSubmit={handleSubmit} style={{textAlign:"center", marginTop:"50px"}}>
+                    <h2>Simple React Form</h2>
+
+                    <input type="text"
+                        name="username"
+                        placeholder="Enter username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        style={{padding:"8px", margin:"5px"}}
+                        />
+                    
+                    <br/>
+
+                    <input type="email"
+                        name="email"
+                        placeholder="Enter Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        style={{padding:"8px",margin:"5px"}}
+                        />
+                    <br />
+                   
+                    {error && <p style={{color:"red"}}> {error}</p> }
+                    
+                    <button type="submit" style={{borderRadius:"20px",padding:"5px",
+                        cursor:"pointer"
+                    }}> Click Submit</button>
+                    </form>
+            );
+        
+        }
+
+        // render
+        const root=ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<SimpleForm />);
+    </script>
+</body>
+</html>
