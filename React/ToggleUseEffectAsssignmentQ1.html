@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Theme Toggle App</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    button {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // ThemedBox Component
+    function ThemedBox({ theme, text }) {
+      const styles = {
+        backgroundColor: theme === "light" ? "#fff" : "#333",
+        color: theme === "light" ? "#000" : "#fff",
+        padding: "20px",
+        margin: "10px",
+        borderRadius: "8px",
+        textAlign: "center"
+      };
+      return <div style={styles}>{text}</div>;
+    }
+
+    // ThemeApp Component
+    function ThemeApp() {
+      // Load theme from localStorage (default: light)
+      const [theme, setTheme] = useState(() => {
+        return localStorage.getItem("theme") || "light";
+      });
+
+      // Store theme in localStorage when it changes
+      useEffect(() => {
+        localStorage.setItem("theme", theme);
+      }, [theme]);
+
+      const toggleTheme = () => {
+        setTheme(prev => (prev === "light" ? "dark" : "light"));
+      };
+
+      return (
+        <div style={{ padding: "20px" }}>
+          <h1>Theme Toggle App</h1>
+          <button onClick={toggleTheme}>
+            Switch to {theme === "light" ? "Dark" : "Light"} Mode
+          </button>
+
+          {/* Render 2-3 boxes */}
+          <ThemedBox theme={theme} text="Box 1" />
+          <ThemedBox theme={theme} text="Box 2" />
+          <ThemedBox theme={theme} text="Box 3" />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<ThemeApp />);
+  </script>
+</body>
+</html>
