@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Quote Generator</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 400px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .spinner {
+      margin: 20px auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #555;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function QuoteApp() {
+      const [quote, setQuote] = useState(null);
+      const [loading, setLoading] = useState(true);
+
+      const fetchQuote = async () => {
+        setLoading(true);
+        try {
+          const res = await fetch("https://api.quotable.io/random");
+          const data = await res.json();
+          setQuote(data);
+        } catch (err) {
+          console.error("Error fetching quote", err);
+        }
+        setLoading(false);
+      };
+
+      useEffect(() => {
+        fetchQuote(); // initial fetch
+        const interval = setInterval(fetchQuote, 30000); // refresh every 30 sec
+        return () => clearInterval(interval); // cleanup
+      }, []);
+
+      return (
+        <div className="container">
+          <h2>Daily Quote Generator</h2>
+          {loading ? (
+            <div className="spinner"></div>
+          ) : (
+            <>
+              <p>"{quote?.content}"</p>
+              <h4>- {quote?.author}</h4>
+            </>
+          )}
+          <button onClick={fetchQuote}>Get New Quote</button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<QuoteApp />);
+  </script>
+</body>
+</html>
