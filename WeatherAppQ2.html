@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather App</title>
+  <!-- React and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- React Router DOM -->
+  <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { BrowserRouter, Routes, Route, Link, useNavigate, useParams } = ReactRouterDOM;
+
+    const API_KEY = "YOUR_API_KEY"; // 🔑 Put your OpenWeatherMap key here
+
+    // 🔹 Home Page with Search
+    function Home() {
+      const [city, setCity] = React.useState("");
+      const navigate = useNavigate();
+
+      function handleSearch() {
+        if (city.trim() !== "") {
+          navigate(`/weather/${city}`);
+        }
+      }
+
+      return (
+        <div>
+          <h2>🌤 Weather App</h2>
+          <input
+            type="text"
+            placeholder="Enter city name..."
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      );
+    }
+
+    // 🔹 Weather Details Page
+    function WeatherDetails() {
+      const { city } = useParams();
+      const [weather, setWeather] = React.useState(null);
+      const [error, setError] = React.useState(null);
+
+      React.useEffect(() => {
+        async function fetchWeather() {
+          try {
+            let res = await fetch(
+              `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+            );
+            if (!res.ok) throw new Error("City not found");
+            let data = await res.json();
+            setWeather(data);
+          } catch (err) {
+            setError(err.message);
+          }
+        }
+        fetchWeather();
+      }, [city]);
+
+      if (error) return <h3>⚠️ {error}</h3>;
+      if (!weather) return <h3>Loading...</h3>;
+
+      return (
+        <div>
+          <h2>Weather in {weather.name}</h2>
+          <p>🌡 Temperature: {weather.main.temp}°C</p>
+          <p>💧 Humidity: {weather.main.humidity}%</p>
+          <p>☁ Condition: {weather.weather[0].description}</p>
+
+          {/* Bonus: Google Maps Embed */}
+          <iframe
+            width="400"
+            height="300"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${city}`}
+          ></iframe>
+        </div>
+      );
+    }
+
+    // 🔹 App with Routes
+    function App() {
+      return (
+        <BrowserRouter>
+          <nav>
+            <Link to="/">Home</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/weather/:city" element={<WeatherDetails />} />
+          </Routes>
+        </BrowserRouter>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+
+  <!-- Babel (for JSX in browser) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+</html>
