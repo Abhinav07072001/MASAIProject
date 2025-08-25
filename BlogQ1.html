@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog App</title>
+  <!-- React and ReactDOM CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- React Router DOM CDN -->
+  <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const { BrowserRouter, Routes, Route, Link, useParams, useNavigate } = ReactRouterDOM;
+
+    // Dummy blog data
+    const posts = [
+      { id: 1, title: "React Basics", content: "This is React basics...", tags: ["react","frontend"] },
+      { id: 2, title: "JavaScript Tips", content: "This is JS tips...", tags: ["javascript","web"] },
+      { id: 3, title: "Routing in React", content: "Learn routing...", tags: ["react-router","spa"] },
+    ];
+
+    // Home Component
+    function Home() {
+      const [search, setSearch] = React.useState("");
+      const filteredPosts = posts.filter(post =>
+        post.title.toLowerCase().includes(search.toLowerCase())
+      );
+
+      return (
+        <div>
+          <h2>Home - Blog Posts</h2>
+          <input
+            type="text"
+            placeholder="Search posts..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <ul>
+            {filteredPosts.map(post => (
+              <li key={post.id}>
+                <Link to={`/post/${post.id}`}>{post.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    // Post Details Component
+    function PostDetails() {
+      const { id } = useParams();
+      const post = posts.find(p => p.id === parseInt(id));
+
+      if (!post) {
+        return <h2>Post not found</h2>;
+      }
+
+      return (
+        <div>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+          <strong>Tags: </strong>
+          {post.tags.map(tag => <span key={tag}>#{tag} </span>)}
+        </div>
+      );
+    }
+
+    // About Component
+    function About() {
+      return (
+        <div>
+          <h2>About</h2>
+          <p>This is a blog project built with React Router DOM (CDN).</p>
+          <p>Author: Abhinav</p>
+        </div>
+      );
+    }
+
+    // Navbar
+    function Navbar() {
+      return (
+        <nav>
+          <Link to="/">Home</Link> |{" "}
+          <Link to="/about">About</Link>
+        </nav>
+      );
+    }
+
+    // App Component
+    function App() {
+      return (
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/post/:id" element={<PostDetails />} />
+          </Routes>
+        </BrowserRouter>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+
+  </script>
+
+  <!-- Babel CDN to allow JSX in browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+</html>
