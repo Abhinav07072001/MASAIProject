@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Main from './components/Main'
-import { AuthProvider } from './components/context/AuthContext'
+import { Routes, Route } from 'react-router-dom'
+import NavBar from './components/Navbar.jsx'
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
+import PostDetails from './pages/PostDetails.jsx'
 
 function App() {
  return(
-  <AuthProvider>
-    <div style={{fontFamily:"Arial ,sans-serif"}}>
-      <Navbar />
-      <Main />
-      <Footer />
-    </div>
-  </AuthProvider>
- );
+  <>
+    <NavBar />
+    <main style={{padding:"1rem"}}>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='post/:id' element={<PostDetails/>}/>
+        <Route path='about'  element={<About/>}/>
+      </Routes>
+    </main>
+  </>
+ )
 }
 
 export default App

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>useRef Example 1</title>
+      <!-- React and ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel CDN for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // const [useState, useRef]=React;
+
+        function App(){
+            const [stateCount, setStateCount]= React.useState(0);
+            const refCount= React.useRef(0);
+            const renderCount = React.useRef(0);
+
+            renderCount.current++; //increase on every render
+
+            const  increaseState =()=>{
+                setStateCount(stateCount+1);
+            }
+
+            const incrementRef=()=>{
+                refCount.current++;
+                console.log("Ref Count:", refCount.current) // UI wont change
+            };
+
+            return(
+                <div style={{fontFamily: "Arial", padding: "20px"}}>
+                    <h2>useState vs useRef</h2>
+                    
+                    <h3>Using useState</h3>
+                    <p>State Count: {stateCount}</p>
+                    <button onClick={increaseState}>Increment State</button>
+
+                    <h3>Using useRef</h3>
+                    <p>Ref Count (check console): {refCount.current}</p>
+                    <button onClick={incrementRef}>Increment Ref</button>
+
+                    <h3>Render Count</h3>
+                    <p>This component rendered: {renderCount.current} times</p>
+                    </div>
+            );
+        }
+
+        const root= ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+    
+    
+</body>
+</html>

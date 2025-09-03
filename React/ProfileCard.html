@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile Card</title>
+    <!-- React + ReactDOM from CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Chakra UI from CDN -->
+    <script src="https://unpkg.com/@chakra-ui/react@2.9.0/dist/chakra-ui-react.umd.min.js"></script>
+    <script src="https://unpkg.com/@emotion/react@11.10.6/dist/emotion-react.umd.min.js"></script>
+    <script src="https://unpkg.com/@emotion/styled@11.10.6/dist/emotion-styled.umd.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/javascript">
+      const {
+        ChakraProvider,
+        Card,
+        CardBody,
+        CardFooter,
+        Image,
+        Heading,
+        Text,
+        Stack,
+        Button,
+        Tag,
+        HStack,
+      } = window["@chakra-ui/react"];
+
+      function ProfileCard() {
+        return React.createElement(
+          Card,
+          { maxW: "sm", boxShadow: "lg", borderRadius: "2xl", p: 4 },
+          React.createElement(
+            CardBody,
+            null,
+            React.createElement(Image, {
+              src: "https://bit.ly/dan-abramov",
+              alt: "Profile",
+              borderRadius: "full",
+              boxSize: "120px",
+              mx: "auto",
+            }),
+            React.createElement(
+              Stack,
+              { mt: "4", textAlign: "center", spacing: "2" },
+              React.createElement(Heading, { size: "md" }, "John Doe"),
+              React.createElement(Text, { color: "gray.500" }, "@johndoe")
+            ),
+            React.createElement(
+              Text,
+              { mt: "3", fontSize: "sm", textAlign: "center" },
+              "Full-stack developer passionate about React, Node.js, and open-source."
+            ),
+            React.createElement(
+              HStack,
+              { justify: "center", spacing: "2", mt: "3" },
+              React.createElement(Tag, { colorScheme: "blue" }, "React"),
+              React.createElement(Tag, { colorScheme: "green" }, "Node.js"),
+              React.createElement(Tag, { colorScheme: "purple" }, "OpenSource")
+            )
+          ),
+          React.createElement(
+            CardFooter,
+            { justify: "center", gap: "3" },
+            React.createElement(Button, { colorScheme: "blue" }, "Follow"),
+            React.createElement(
+              Button,
+              { variant: "outline", colorScheme: "blue" },
+              "Message"
+            )
+          )
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(
+        React.createElement(ChakraProvider, null, React.createElement(ProfileCard))
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>useRef Example 2</title>
+     <!-- React and ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel CDN for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <link rel="icon" href="data:;base64,=">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App(){
+            const inputRef= React.useRef(null);
+
+            React.useEffect(()=>{
+                inputRef.current.focus();
+            },[]);
+
+            const handleFocusClick=()=>{
+                inputRef.current.focus();
+            };
+
+            return(
+                <div style={{fontFamily: "Arial", padding: "20px"}}>
+                    <h2>Login Form</h2>
+                    <input type="text"
+                    ref={inputRef}
+                    placeholder="Enter Here"
+                    style={{ padding: "10px", fontSize: "16px" }} />
+
+                    <button onClick={handleFocusClick}style={{ marginLeft: "10px", padding: "10px" }}>
+                        Focus Input </button>
+                    </div>
+            );
+        }
+
+        const root=ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+    
+</body>
+</html>
