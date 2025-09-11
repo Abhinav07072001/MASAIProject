@@ -1,0 +1,4 @@
+html,body,#root{ height:100% }
+body{ margin:0; font-family:Inter, system-ui, Arial, sans-serif; background:#f7f8fb }
+*{ box-sizing:border-box }
+@media(max-width:600px){ .appContainer{ padding:8px } }
