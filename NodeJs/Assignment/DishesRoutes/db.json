@@ -1,0 +1,16 @@
+{
+  "dishes": [
+    {
+      "id": 1,
+      "name": "idly",
+      "price": 60,
+      "category": "Snacks"
+    },
+    {
+      "id": 2,
+      "name": "Dosa",
+      "price": 100,
+      "category": "Lunch"
+    }
+  ]
+}
