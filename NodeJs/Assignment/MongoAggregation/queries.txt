@@ -1,0 +1,17 @@
+// Q1. Total sales amount for each product category
+db.sales.aggregate([
+  { $group: { _id: "$category", totalSales: { $sum: "$amount" } } }
+]);
+
+// Q2. Month-wise total sales amount
+db.sales.aggregate([
+  {
+    $group: {
+      _id: { $month: { $toDate: "$date" } },
+      totalSales: { $sum: "$amount" }
+    }
+  },
+  { $sort: { "_id": 1 } }
+]);
+
+// ... and so on for all queries
